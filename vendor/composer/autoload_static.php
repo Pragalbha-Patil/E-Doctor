@@ -463,8 +463,11 @@ class ComposerStaticInit229edb5cd316593aa12aa8b59e93e31d
     );
 
     public static $classMap = array (
+        'App\\AppModel' => __DIR__ . '/../..' . '/app/AppModel.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Conversations\\ExampleConversation' => __DIR__ . '/../..' . '/app/Conversations/ExampleConversation.php',
+        'App\\Conversations\\bookAppointment' => __DIR__ . '/../..' . '/app/Conversations/bookAppointment.php',
+        'App\\DoctorModel' => __DIR__ . '/../..' . '/app/DoctorModel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
