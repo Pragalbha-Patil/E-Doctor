@@ -17,3 +17,11 @@ Route::get('/', function () {
 
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 Route::get('/botman/tinker', 'BotManController@tinker');
+
+Route::get('/completepayment', function() {
+    return view('payment');
+});
+
+Route::get('/paymentcomplete', function() {
+    return view('success');
+});

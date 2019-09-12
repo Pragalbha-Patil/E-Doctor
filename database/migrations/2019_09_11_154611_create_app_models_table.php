@@ -21,6 +21,7 @@ class CreateAppModelsTable extends Migration
             $table->string('ugender',10);
             $table->date('adate');
             $table->time('atime');
+            $table->string('amount')->default(100)->nullable();
             $table->string('atoken')->nullable();
             $table->timestamps();
         });

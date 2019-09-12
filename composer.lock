@@ -1,11 +1,63 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0d2dbc473e10612d9e38bd92b3e061c",
+    "content-hash": "421df57c2fda46bfc3b1f5dd34968892",
     "packages": [
+        {
+            "name": "anandsiddharth/laravel-paytm-wallet",
+            "version": "v1.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anandsiddharth/laravel-paytm-wallet.git",
+                "reference": "9b0a5b97b095916a206396a6e0275e1e0290c911"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anandsiddharth/laravel-paytm-wallet/zipball/9b0a5b97b095916a206396a6e0275e1e0290c911",
+                "reference": "9b0a5b97b095916a206396a6e0275e1e0290c911",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": ">=5.0",
+                "illuminate/support": ">=5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Anand\\LaravelPaytmWallet\\PaytmWalletServiceProvider"
+                    ],
+                    "aliases": {
+                        "PaytmWallet": "Anand\\LaravelPaytmWallet\\Facades\\PaytmWallet"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Anand\\LaravelPaytmWallet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anand Siddharth",
+                    "email": "anandsiddharth21@gmail.com"
+                }
+            ],
+            "description": "Integrate paytm wallet easily with this package. This package uses official Paytm PHP SDK's",
+            "keywords": [
+                "laravel",
+                "paytm wallet"
+            ],
+            "time": "2019-09-12T04:47:34+00:00"
+        },
         {
             "name": "botman/botman",
             "version": "2.4.1",

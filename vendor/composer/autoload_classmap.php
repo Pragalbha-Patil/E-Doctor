@@ -6,6 +6,19 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Anand\\LaravelPaytmWallet\\Contracts\\Factory' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Contracts/Factory.php',
+    'Anand\\LaravelPaytmWallet\\Contracts\\Provider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Contracts/Provider.php',
+    'Anand\\LaravelPaytmWallet\\Facades\\PaytmWallet' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Facades/PaytmWallet.php',
+    'Anand\\LaravelPaytmWallet\\PaytmWalletManager' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/PaytmWalletManager.php',
+    'Anand\\LaravelPaytmWallet\\PaytmWalletServiceProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/PaytmWalletServiceProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\BalanceCheckProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/BalanceCheckProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\PaytmAppProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/PaytmAppProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\PaytmWalletProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/PaytmWalletProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\ReceivePaymentProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/ReceivePaymentProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\RefundPaymentProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/RefundPaymentProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\RefundStatusCheckProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/RefundStatusCheckProvider.php',
+    'Anand\\LaravelPaytmWallet\\Providers\\StatusCheckProvider' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Providers/StatusCheckProvider.php',
+    'Anand\\LaravelPaytmWallet\\Traits\\HasTransactionStatus' => $vendorDir . '/anandsiddharth/laravel-paytm-wallet/src/Traits/HasTransactionStatus.php',
     'App\\AppModel' => $baseDir . '/app/AppModel.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Conversations\\ExampleConversation' => $baseDir . '/app/Conversations/ExampleConversation.php',

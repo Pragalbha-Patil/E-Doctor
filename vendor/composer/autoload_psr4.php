@@ -70,5 +70,6 @@ return array(
     'BotMan\\BotMan\\' => array($vendorDir . '/botman/botman/src'),
     'BeyondCode\\DumpServer\\' => array($vendorDir . '/beyondcode/laravel-dump-server/src'),
     'App\\' => array($baseDir . '/app'),
+    'Anand\\LaravelPaytmWallet\\' => array($vendorDir . '/anandsiddharth/laravel-paytm-wallet/src'),
     '' => array($vendorDir . '/nesbot/carbon/src'),
 );

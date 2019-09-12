@@ -148,6 +148,7 @@ class ComposerStaticInit229edb5cd316593aa12aa8b59e93e31d
         'A' => 
         array (
             'App\\' => 4,
+            'Anand\\LaravelPaytmWallet\\' => 25,
         ),
     );
 
@@ -410,6 +411,10 @@ class ComposerStaticInit229edb5cd316593aa12aa8b59e93e31d
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Anand\\LaravelPaytmWallet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -463,6 +468,19 @@ class ComposerStaticInit229edb5cd316593aa12aa8b59e93e31d
     );
 
     public static $classMap = array (
+        'Anand\\LaravelPaytmWallet\\Contracts\\Factory' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Contracts/Factory.php',
+        'Anand\\LaravelPaytmWallet\\Contracts\\Provider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Contracts/Provider.php',
+        'Anand\\LaravelPaytmWallet\\Facades\\PaytmWallet' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Facades/PaytmWallet.php',
+        'Anand\\LaravelPaytmWallet\\PaytmWalletManager' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/PaytmWalletManager.php',
+        'Anand\\LaravelPaytmWallet\\PaytmWalletServiceProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/PaytmWalletServiceProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\BalanceCheckProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/BalanceCheckProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\PaytmAppProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/PaytmAppProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\PaytmWalletProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/PaytmWalletProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\ReceivePaymentProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/ReceivePaymentProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\RefundPaymentProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/RefundPaymentProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\RefundStatusCheckProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/RefundStatusCheckProvider.php',
+        'Anand\\LaravelPaytmWallet\\Providers\\StatusCheckProvider' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Providers/StatusCheckProvider.php',
+        'Anand\\LaravelPaytmWallet\\Traits\\HasTransactionStatus' => __DIR__ . '/..' . '/anandsiddharth/laravel-paytm-wallet/src/Traits/HasTransactionStatus.php',
         'App\\AppModel' => __DIR__ . '/../..' . '/app/AppModel.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Conversations\\ExampleConversation' => __DIR__ . '/../..' . '/app/Conversations/ExampleConversation.php',

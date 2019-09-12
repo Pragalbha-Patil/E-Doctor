@@ -12,6 +12,9 @@ use App\DoctorModel;
 use App\AppModel;
 use Validator;
 use DB;
+use PaytmWallet;
+use View;
+use ButtonTemplate;
 
 class bookAppointment extends Conversation
 {
@@ -47,16 +50,18 @@ class bookAppointment extends Conversation
 
     public function bookapp() {
 
-        $findifSlotAvail =  DoctorModel::where('status', '=', '0');
+        $findifSlotAvail =  DoctorModel::where('status', '=', '0'); //improvise this
         if($findifSlotAvail) {
             //ask details
             $this->askName();
         }
         else if(!$findifSlotAvail) {
-            //slot not avail
+            $this->say("Oops, looks like the doctor isnt free.");
+            return 0;
         }
         else  {
             //server error
+            return 0;
         }
         
     }
@@ -135,9 +140,9 @@ class bookAppointment extends Conversation
     public function askDate() {
         //$fetchdates = DoctorModel::all('date')->where('status','=', 0);
         $fetchdates = DB::table('doctor_appointment_mapping')->where('status' , 0)->get();
+        $buttonArray = [];
         foreach($fetchdates as $fetchdates) {
             //echo ' '.$dates->date;
-            $buttonArray = [];
             $dates = date("d-m-Y", strtotime($fetchdates->date)); //formatting date in ddmmyyyy format
             $button = Button::create($dates)->value($dates);
             $buttonArray[] = $button;   
@@ -216,7 +221,6 @@ class bookAppointment extends Conversation
         $appdata->save();
 
         //do the time status update on doctor table
-        $this->say("Your booking details were successfully recorded.");
         $message = '------------------------------------------------ <br>';
         $message .= 'Name : ' . $user->get('name') . '<br>';
         $message .= 'Email : ' . $user->get('email') . '<br>';
@@ -230,11 +234,37 @@ class bookAppointment extends Conversation
     }
 
     public function cancelapp() {
-        dd('cancel');
+        $this->ask('Enter your token to cancel appointment.', function(Answer $answer){
+            $entToken = $answer->getText();
+            $tokenCheck = AppModel::where('atoken' , $entToken)->delete();
+            if($tokenCheck) {
+                $this->say('We\'ve cancelled your appointment.');
+            }
+            else {
+                $this->say('Invalid token number.');
+            }
+        });
     }
 
     public function viewapp() {
-        dd('view');
+        $this->ask('Enter your token to view appointment.', function(Answer $answer){
+            $entToken = str_replace(' ', '', $answer->getText());
+            $tokenCheck = AppModel::where('atoken' , $entToken)->first();
+            if($tokenCheck) {
+                $message = '------------------------------------------------ <br>';
+                $message .= 'Name : ' . $tokenCheck->uname . '<br>';
+                $message .= 'Email : ' . $tokenCheck->uemail . '<br>';
+                $message .= 'Mobile : ' . $tokenCheck->umobile . '<br>';
+                $message .= 'Date : ' . $tokenCheck->adate . '<br>';
+                $message .= 'Time : ' . $tokenCheck->atime . '<br>';
+                $message .= 'Token : ' . $tokenCheck->atoken . '<br>';
+                $message .= '------------------------------------------------';
+                $this->say('Here are your booking details. <br><br>' . $message);
+            }
+            else {
+                $this->say('Invalid token number.');
+            }
+        });
     }
 
     public function error() {
