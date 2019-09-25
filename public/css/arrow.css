@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+}
+
+.scroll-prompt {
+  position: fixed;
+  z-index: 998;
+  bottom: 20px;
+  left: 96.3%;
+  margin-left: -80px;
+  width: 160px;
+  height: 160px;
+}
+.scroll-prompt .scroll-prompt-arrow-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -18px;
+  -webkit-animation-name: bounce;
+          animation-name: bounce;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.scroll-prompt .scroll-prompt-arrow {
+  -webkit-animation-name: opacity;
+          animation-name: opacity;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.scroll-prompt .scroll-prompt-arrow:last-child {
+  animation-direction: reverse;
+  margin-top: -6px;
+}
+.scroll-prompt .scroll-prompt-arrow > div {
+  width: 36px;
+  height: 36px;
+  border-right: 8px solid #bebebe;
+  border-bottom: 8px solid #bebebe;
+  -webkit-transform: rotate(45deg) translateZ(1px);
+          transform: rotate(45deg) translateZ(1px);
+}
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  10% {
+    -webkit-transform: translateY(3px);
+            transform: translateY(3px);
+  }
+  20% {
+    -webkit-transform: translateY(6px);
+            transform: translateY(6px);
+  }
+  30% {
+    -webkit-transform: translateY(9px);
+            transform: translateY(9px);
+  }
+  40% {
+    -webkit-transform: translateY(12px);
+            transform: translateY(12px);
+  }
+  50% {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
+  60% {
+    -webkit-transform: translateY(18px);
+            transform: translateY(18px);
+  }
+  70% {
+    -webkit-transform: translateY(21px);
+            transform: translateY(21px);
+  }
+  80% {
+    -webkit-transform: translateY(24px);
+            transform: translateY(24px);
+  }
+  90% {
+    -webkit-transform: translateY(27px);
+            transform: translateY(27px);
+  }
+  100% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+  }
+}
+@keyframes bounce {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  10% {
+    -webkit-transform: translateY(3px);
+            transform: translateY(3px);
+  }
+  20% {
+    -webkit-transform: translateY(6px);
+            transform: translateY(6px);
+  }
+  30% {
+    -webkit-transform: translateY(9px);
+            transform: translateY(9px);
+  }
+  40% {
+    -webkit-transform: translateY(12px);
+            transform: translateY(12px);
+  }
+  50% {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+  }
+  60% {
+    -webkit-transform: translateY(18px);
+            transform: translateY(18px);
+  }
+  70% {
+    -webkit-transform: translateY(21px);
+            transform: translateY(21px);
+  }
+  80% {
+    -webkit-transform: translateY(24px);
+            transform: translateY(24px);
+  }
+  90% {
+    -webkit-transform: translateY(27px);
+            transform: translateY(27px);
+  }
+  100% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+  }
+}
