@@ -1,0 +1,74 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Doctor Admin Panel</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
+                    <form method="POST" action = "{{ route('datetimeinput') }}">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Doctor Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter name" name="name">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter free date</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" name="date">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter free time</label>
+                            <input type="time" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" name="time">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small> -->
+                        </div>
+                        <!--
+                             <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div> -->
+                        <div style="overflow:hidden;">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div id="datetimepicker12"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker12').datetimepicker({
+                                        inline: true,
+                                        sideBySide: true
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

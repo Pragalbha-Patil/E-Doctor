@@ -22,7 +22,9 @@
 </div>
   <div class='intro__text'>E - doctor</div>
   <br><br>
-  <button class='intro__btn' type='button'>Explore</button>
+  <form action="/login">
+  <button class='intro__btn' type='submit'>Doctor Login</button>
+  </form>
 </section>
 <!-- partial -->
   <script  src="{{asset('js/land.js')}}"></script>

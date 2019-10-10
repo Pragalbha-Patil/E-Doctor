@@ -21,3 +21,7 @@ Route::get('/botman/tinker', 'BotManController@tinker');
 Route::get('completepayment', 'PayController@index');
 Route::post('pay', 'PayController@pay');
 Route::get('pay-success', 'PayController@success');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/doctor', 'HomeController@freeDateTime')->name('datetimeinput');
