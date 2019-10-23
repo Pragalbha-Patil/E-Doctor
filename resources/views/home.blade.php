@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +17,40 @@
                     </div>
                     @endif
 
+                    @if(Session::has('msg'))
+                        <!-- <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p> -->
+                        <!-- Modal -->
+                        <script>
+                             
+                             $( document ).ready(function() {
+                                // alert('Record added successfully!');
+                                console.log( "ready!" );
+                                $('#myModal').modal('show');
+                            });
+                        </script>
+                        <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                                <h4 class="modal-title">Record Status</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p> Record Added successfully! </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    @endif
+
                     <form method="POST" action = "{{ route('datetimeinput') }}">
+                    @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Doctor Name</label>
                             <input type="text" class="form-control" id="exampleInputEmail1"
