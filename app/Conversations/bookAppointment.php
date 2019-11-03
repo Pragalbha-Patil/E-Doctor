@@ -139,7 +139,7 @@ class bookAppointment extends Conversation
 
     public function askDate() {
         //$fetchdates = DoctorModel::all('date')->where('status','=', 0);
-        $fetchdates = DB::table('doctor_appointment_mapping')->where('status' , 0)->get();
+        $fetchdates = DB::table('doctor_appointment_mapping')->where('status' , 0)->distinct()->get();
         $buttonArray = [];
         foreach($fetchdates as $fetchdates) {
             //echo ' '.$dates->date;
@@ -168,7 +168,7 @@ class bookAppointment extends Conversation
     public function askTime(){
         $user = $this->bot->userStorage()->find();
         $selectedDate = date("Y-m-d", strtotime($user->get('date')));
-        $fetchTime = DoctorModel::select('time')->where('date', $selectedDate)->get();
+        $fetchTime = DoctorModel::select('time')->where('date', $selectedDate)->where('status', 0)->get();
         // dd($fetchTime->time); // time is in hh:mm:ss format so beware.
         $buttonArray = [];
         if($fetchTime) {
@@ -213,29 +213,50 @@ class bookAppointment extends Conversation
 
         $unametok = mb_substr($uname, 0, 4);
         $umobtok = mb_substr($umob, 6, 10);
-        $timetok = mb_substr($atime,0,2);
+        $timetok = mb_substr($atime,0,4);
         $token = ''.$unametok.''.$umobtok.''.$adate.''.$timetok;
         $finaltoken = strtoupper($token);
+        $date = date("Y-m-d", strtotime($adate));
+        $time = date("H:i:s", strtotime($atime));
+        $time12 = date("g:i:s", strtotime($atime));
         // dd($finaltoken);
-        $appdata->atoken = $finaltoken;
-        $appdata->save();
-
-        //do the time status update on doctor table
-        $message = '------------------------------------------------ <br>';
-        $message .= 'Name : ' . $user->get('name') . '<br>';
-        $message .= 'Email : ' . $user->get('email') . '<br>';
-        $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
-        $message .= 'Date : ' . $user->get('date') . '<br>';
-        $message .= 'Time : ' . $user->get('time') . '<br>';
-        $message .= 'Token : ' . $finaltoken . '<br>';
-        $message .= '------------------------------------------------';
-        $this->say('Here are your booking details. <br><br>' . $message);
-        $this->say('Save the token for viewing and cancelling the appointment');
+        $someoneisfast = AppModel::where('adate', $date)->where('atime', $time12)->first();
+        if($someoneisfast) {
+            $this->say("Sorry, this slot was booked by someone else. Please try with different slots.");
+            $this->askDate();
+        }
+        else {
+            $appdata->atoken = $finaltoken;
+            $appdata->save();
+            // Updating status to avoid multiple bookings
+            $docModel = new DoctorModel;
+            $status = $docModel::where('date', $date)->where('time', $time)->first();
+            $status->status = 1;
+            $status->save();
+            // Message below
+            $message = '------------------------------------------------ <br>';
+            $message .= 'Name : ' . $user->get('name') . '<br>';
+            $message .= 'Email : ' . $user->get('email') . '<br>';
+            $message .= 'Mobile : ' . $user->get('mobile') . '<br>';
+            $message .= 'Date : ' . $user->get('date') . '<br>';
+            $message .= 'Time : ' . $user->get('time') . '<br>';
+            $message .= 'Token : ' . $finaltoken . '<br>';
+            $message .= '------------------------------------------------';
+            $this->say('Here are your booking details. <br><br>' . $message);
+            $this->say('Save the token for viewing and cancelling the appointment');
+        }
     }
 
     public function cancelapp() {
         $this->ask('Enter your token to cancel appointment.', function(Answer $answer){
             $entToken = $answer->getText();
+            // getting appointment details
+            $status = AppModel::where('atoken', $entToken)->first();
+            $date = $status->adate;
+            $time = $status->atime;
+            $model = DoctorModel::where('date', $date)->where('time', $time)->first();
+            $model->status = 0;
+            $model->save();
             $tokenCheck = AppModel::where('atoken' , $entToken)->delete();
             if($tokenCheck) {
                 $this->say('We\'ve cancelled your appointment.');

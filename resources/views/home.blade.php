@@ -8,8 +8,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Doctor Admin Panel</div>
-
+                <div class="card-header">Doctor Admin Panel - Home</div>
+                
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -52,24 +52,24 @@
                     <form method="POST" action = "{{ route('datetimeinput') }}">
                     @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Doctor Name</label>
+                            <label for="exampleInputEmail1"><i class="fa fa-user-md" aria-hidden="true"></i> Doctor Name</label>
                             <input type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Enter name" name="name">
+                                aria-describedby="emailHelp" placeholder="Enter name" name="name" required value="{{auth()->user()->name}}" readonly>
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small> -->
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Enter free date</label>
+                            <label for="exampleInputEmail1"><i class="fa fa-calendar" aria-hidden="true"></i> Enter free date</label>
                             <input type="date" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" name="date">
+                                aria-describedby="date" name="date" required>
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Enter free time</label>
+                            <label for="exampleInputEmail1"><i class="fa fa-clock-o" aria-hidden="true"></i> Enter free time</label>
                             <input type="time" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" name="time">
+                                aria-describedby="emailHelp" name="time" required>
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small> -->
                         </div>

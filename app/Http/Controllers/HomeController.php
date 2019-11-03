@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\DoctorModel;
+use App\AppModel;
+use DB;
+
 class HomeController extends Controller
 {
     /**
@@ -42,5 +45,23 @@ class HomeController extends Controller
         $model->save();
         return redirect()->route('home')->with('msg', 'Record added successfully!');
 
+    }
+
+    public function view() {
+        $user = auth()->user()->name;
+        if($user) {
+            $result = DB::table('appointments')->get();
+            return view('show')->with('data', $result);
+        }
+        else {
+            return redirect()->route('/');
+        }
+    }
+
+    public function deleteById($id) {
+        $actual_id = base64_decode(urldecode($id));
+        $model = AppModel::findOrfail($actual_id);
+        $model->delete();
+        return redirect()->route('appointments')->with('msg', 'Record deleted successfully!');
     }
 }

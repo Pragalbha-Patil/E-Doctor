@@ -24,4 +24,6 @@ Route::get('pay-success', 'PayController@success');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/appointments', 'HomeController@view')->name('appointments');
+Route::get('/appointments/{id}', 'HomeController@deleteById')->name('delete');
 Route::post('/doctor', 'HomeController@freeDateTime')->name('datetimeinput');
