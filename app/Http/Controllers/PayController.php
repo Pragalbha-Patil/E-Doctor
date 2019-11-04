@@ -28,7 +28,7 @@ class PayController extends Controller
             "email" => "$request->email",
             "phone" => "$request->mobile_number",
             "token" => "$request->token",
-            "redirect_url" => "http://127.0.0.1:8000/pay-success"
+            "redirect_url" => "http://e-doctor.frb.io/pay-success"
             ));
              
             header('Location: ' . $response['longurl']);

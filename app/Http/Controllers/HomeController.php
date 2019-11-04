@@ -31,11 +31,17 @@ class HomeController extends Controller
     }
 
     public function freeDateTime(Request $request) {
-        // return Validator::make($request, [
-        //     'name' => 'required|string|max:100',
-        //     'date' => 'required|date',
-        //     'time' => 'required',
-        // ]);
+
+        $request->validate([
+            'name' => 'bail|required|string|max:100',
+            'date' => 'bail|required|date|after_or_equal:today',
+            'time' => 'bail|required|between:8,22',
+        ],
+        [
+            'time.between' => 'The clinic is only open between 8AM to 10PM',
+            'date.after_or_equal' => 'Date cannot be before today'
+        ]
+        );
         
         $model = new DoctorModel;
         $model->dname = $request->name;
