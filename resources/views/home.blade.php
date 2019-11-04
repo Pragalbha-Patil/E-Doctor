@@ -50,6 +50,7 @@
                             </div>
                             <div class="modal-body">
                                 <p> Record Added successfully! </p>
+                                <a href="{{route('appointments')}}">View Appointments</a>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>

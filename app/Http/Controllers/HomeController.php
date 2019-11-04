@@ -35,7 +35,7 @@ class HomeController extends Controller
         $request->validate([
             'name' => 'bail|required|string|max:100',
             'date' => 'bail|required|date|after_or_equal:today',
-            'time' => 'bail|required|between:8,22',
+            'time' => 'bail|required',
         ],
         [
             'time.between' => 'The clinic is only open between 8AM to 10PM',

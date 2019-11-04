@@ -42,8 +42,15 @@ class bookAppointment extends Conversation
                     $this->cancelapp();
                 } else if($answer->getValue() === 'view') {
                     $this->viewapp();
+                } else {
+                    $this->say('Invalid option. Try again.');
+                    $this->run();
                 }
 
+            }
+            else {
+                $this->say('Invalid option. Try again.');
+                $this->run();
             }
         });
     }
@@ -67,10 +74,16 @@ class bookAppointment extends Conversation
     }
     public function askName() {
         $this->ask('Please enter your name', function(Answer $answer){
-            $this->say('Nice to meet you '.$answer->getText());
+            $validator = Validator::make(['name' => $answer->getText()], [
+                'name' => 'regex:/^[a-zA-Z ]+$/',
+            ]);
+            if ($validator->fails()) {
+                return $this->repeat('That doesn\'t look like a valid name. Please enter a valid name.');
+            }
             $this->bot->userStorage()->save([
                 'name' => $answer->getText(),
             ]);
+            $this->say('Nice to meet you '.$answer->getText());
             $this->askEmail();
         });
     }
@@ -133,6 +146,10 @@ class bookAppointment extends Conversation
                     'gender' => $answer->getText(),
                 ]);
             }
+            else {
+                $this->say('Invalid option. Try again.');
+                $this->run();
+            }
             $this->askDate();
         });
     }
@@ -161,6 +178,10 @@ class bookAppointment extends Conversation
                     ]);
                     $this->askTime();
                 }
+                else {
+                    $this->say('Invalid option. Try again.');
+                    $this->run();
+                }
             });
         }
     }
@@ -186,6 +207,10 @@ class bookAppointment extends Conversation
                         'time' => $answer->getValue(),
                     ]);
                     $this->confirmBooking();
+                }
+                else {
+                    $this->say('Invalid option. Try again.');
+                    $this->run();
                 }
             });
         }
@@ -252,17 +277,24 @@ class bookAppointment extends Conversation
             $entToken = $answer->getText();
             // getting appointment details
             $status = AppModel::where('atoken', $entToken)->first();
-            $date = $status->adate;
-            $time = $status->atime;
-            $model = DoctorModel::where('date', $date)->where('time', $time)->first();
-            $model->status = 0;
-            $model->save();
-            $tokenCheck = AppModel::where('atoken' , $entToken)->delete();
-            if($tokenCheck) {
-                $this->say('We\'ve cancelled your appointment.');
+            if($status) {
+                $date = $status->adate;
+                $time = $status->atime;
+                $model = DoctorModel::where('date', $date)->where('time', $time)->first();
+                $model->status = 0;
+                $model->save();
+                $tokenCheck = AppModel::where('atoken' , $entToken)->delete();
+                if($tokenCheck) {
+                    $this->say('We\'ve cancelled your appointment.');
+                }
+                else {
+                    $this->say('Invalid token number.');
+                    $this->run();
+                }
             }
             else {
                 $this->say('Invalid token number.');
+                $this->run();
             }
         });
     }
