@@ -300,9 +300,12 @@ class bookAppointment extends Conversation
     }
 
     public function viewapp() {
-        $this->ask('Enter your token to view appointment.', function(Answer $answer){
+        $this->ask('Enter your token or mobile number to view scheduled appointment.', function(Answer $answer){
             $entToken = str_replace(' ', '', $answer->getText());
             $tokenCheck = AppModel::where('atoken' , $entToken)->first();
+            if(!$tokenCheck) {
+                $tokenCheck = AppModel::where('umobile', $entToken)->first();
+            }
             if($tokenCheck) {
                 $message = '------------------------------------------------ <br>';
                 $message .= 'Name : ' . $tokenCheck->uname . '<br>';
@@ -315,7 +318,7 @@ class bookAppointment extends Conversation
                 $this->say('Here are your booking details. <br><br>' . $message);
             }
             else {
-                $this->say('Invalid token number.');
+                $this->say('Invalid token or mobile number.');
             }
         });
     }
